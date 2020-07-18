@@ -1,23 +1,17 @@
-import { put, takeLatest } from 'redux-saga/effects';
-import {
-  handleDefaultActionError,
-  handleDefaultActionFinished,
-  handleDefaultActionStarted
-} from './actions';
-import * as pokedexConstants from './constants';
+import { call, put } from 'redux-saga/effects';
+import { getList, getInfoList } from '../../services';
+import { SetPokedexListReducer } from './actions';
 
-function* defaultActionHandler(action) {
-  yield put(handleDefaultActionStarted());
-
+function* getPokeList() {
   try {
-    // TODO: yield some workflow logic
+    const list = getList(1, 10);
+    const pokeList = yield call(getInfoList, list);
+    yield put(SetPokedexListReducer(pokeList));
   } catch (err) {
-    yield put(handleDefaultActionError(err));
+    console.log(err);
   }
-
-  yield put(handleDefaultActionFinished());
 }
 
 export function* pokedexSaga() {
-  yield takeLatest(pokedexConstants.DEFAULT_SAGA, defaultActionHandler);
+  yield call(getPokeList);
 }

@@ -9,7 +9,7 @@ import { pokedexSaga } from './saga';
 import * as pokedexSelectors from './selectors';
 
 const mapStateToProps = state => ({
-  pokedex: pokedexSelectors.pokedexSelector(state)
+  list: pokedexSelectors.listSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
