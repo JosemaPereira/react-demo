@@ -1,0 +1,112 @@
+@use 'variables';
+
+#header {
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  color: white;
+  font-family: variables.$font_bebas;
+}
+
+#logo {
+  float: left;
+  width: auto;
+  background-color: variables.$color_blue;
+  text-align: center;
+  letter-spacing: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 300ms;
+  margin-top: 8px;
+  margin-left: 20px;
+
+  .gear {
+    display: block;
+    float: left;
+    font-size: 30px;
+    margin-top: 8px;
+    margin-left: 26px;
+    animation-name: rotate-gear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  &:hover {
+    border-radius: 2px;
+    color: black;
+    background-color: #ccc;
+  }
+
+  &:hover .gear {
+    animation: fromBellow 500ms linear;
+  }
+
+  h3 {
+    font-size: 40px;
+    display: block;
+    float: right;
+    margin-top: 5px;
+    margin-right: 65px;
+    transition: all 300ms;
+  }
+
+  &:hover h3 {
+    animation: fromRight 300ms linear;
+  }
+}
+
+@keyframes rotate-gear {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes fromBellow {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(200%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes fromRight {
+  from {
+    transform: translateX(200%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+// Menu
+#menu {
+  float: right;
+  height: 70px;
+  background: black;
+
+  ul li {
+    font-size: 24px;
+    display: inline-block;
+    margin: 0px 20px 0px 20px;
+    letter-spacing: 1px;
+    line-height: 70px;
+    a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      transition: all 300ms;
+      &:hover {
+        color: variables.$color_blue;
+        transform: scale(1.2, 1.2);
+      }
+    }
+  }
+}
