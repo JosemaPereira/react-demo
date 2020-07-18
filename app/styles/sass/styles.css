@@ -133,4 +133,41 @@
   transform: scale(1.2, 1.2);
 }
 
+.content {
+  float: left;
+  padding: 10px;
+  padding-top: 20px;
+  margin-left: 75px;
+  width: 90%;
+}
+
+.list {
+  float: left;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: center;
+  border: 3px solid black;
+  padding: 20px;
+}
+
+.item {
+  border: 1px solid black;
+  margin: 0px auto;
+  width: 100px;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+}
+
+.aside {
+  float: left;
+  width: 30%;
+  border: 5px solid black;
+  margin-left: 10px;
+  text-align: center;
+  padding: 20px;
+}
+
 /*# sourceMappingURL=styles.css.map */
