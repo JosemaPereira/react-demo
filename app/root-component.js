@@ -7,6 +7,7 @@ import { history } from './utils/history';
 import { configureStore } from './configureStore';
 import { translationMessages } from './i18n';
 import { Header } from './components/Header';
+import { AppContainer } from './containers/App';
 
 const initialState = {};
 const store = configureStore(initialState);
@@ -25,7 +26,7 @@ export default class App extends React.Component {
           messages={this.props.messages || translationMessages}
         >
           <Router history={history}>
-            <Header />
+            <AppContainer />
           </Router>
         </LanguageProvider>
       </Provider>

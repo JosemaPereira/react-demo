@@ -1,20 +1,17 @@
-/**
- *
- * App.js
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- *
- */
-
+import { PokedexContainer } from '../../containers/Pokedex';
+import { UsersContainer } from '../../containers/Users';
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import { Main } from '../../components/Main';
+import { Header } from '../../components/Header';
 
-export function App() {
-  return (
-    <Switch>
-      <Route exact path="/" component={Main} />
-    </Switch>
-  );
-}
+export const AppContainer = () => (
+  <>
+    <Header />
+    <div className="content">
+      <Switch>
+        <Route exact path="/pokedex" component={PokedexContainer} />
+        <Route exact path="/user" component={UsersContainer} />
+      </Switch>
+    </div>
+  </>
+);
