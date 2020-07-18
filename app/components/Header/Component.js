@@ -1,7 +1,7 @@
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 
-export const Main = injectIntl(({ intl }) => (
+const HeaderIntl = ({ intl }) => (
   <header id="header">
     <div className="wrap">
       <div id="logo">
@@ -20,4 +20,10 @@ export const Main = injectIntl(({ intl }) => (
       </nav>
     </div>
   </header>
-));
+);
+
+HeaderIntl.propTypes = {
+  intl: intlShape.isRequired
+};
+
+export const Header = injectIntl(HeaderIntl);

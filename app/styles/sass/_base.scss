@@ -1,0 +1,14 @@
+@use 'variables';
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.icon {
+  font-family: variables.$font_symbols;
+}
+
+.wrap {
+  width: 1250px;
+  margin: 0px auto;
+}

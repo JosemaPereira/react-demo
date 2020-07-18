@@ -8,6 +8,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './root-component';
 
+import './styles/sass/styles.css';
+
 export const render = messages => {
   ReactDOM.render(<App messages={messages} />, MOUNT_NODE);
 };
