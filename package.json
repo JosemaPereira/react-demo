@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "extract-intl": "node ./internals/scripts/extract-intl.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./internals/webpack/webpack.dev.babel.js --color -p --progress --hide-modules",
+    "build": "cross-env NODE_ENV=development webpack --config ./internals/webpack/webpack.dev.babel.js --color -p --progress --hide-modules",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./internals/webpack/webpack.dev.babel.js --open --port 3000 --historyApiFallback",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "yarn run lint:js",
@@ -21,10 +21,12 @@
     "lint:js": "yarn run lint:eslint . ",
     "pretest": "yarn run lint",
     "test": "cross-env NODE_ENV=test jest --coverage",
-    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "watch:styles": "sass --watch ./app/styles/sass/index.scss ./app/styles/sass/styles.css"
   },
   "dependencies": {
     "@types/jasmine": "3.3.13",
+    "axios": "^0.19.2",
     "connected-react-router": "6.5.2",
     "core-js": "3.1.4",
     "history": "4.9.0",
@@ -35,7 +37,7 @@
     "karma-chrome-launcher": "3.0.0",
     "karma-coverage-istanbul-reporter": "2.0.5",
     "lerna": "3.15.0",
-    "lodash": "4.17.15",
+    "lodash": "^4.17.15",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -73,6 +75,7 @@
     "compression-webpack-plugin": "2.0.0",
     "copy-webpack-plugin": "5.0.4",
     "cross-env": "5.2.0",
+    "css-loader": "^3.6.0",
     "dotenv": "8.1.0",
     "dotenv-expand": "4.2.0",
     "enzyme": "3.7.0",
@@ -98,6 +101,8 @@
     "react-test-renderer": "16.6.0",
     "shelljs": "0.8.2",
     "simple-progress-webpack-plugin": "1.1.2",
+    "style-loader": "^1.2.1",
+    "svg-url-loader": "^6.0.0",
     "terser-webpack-plugin": "1.1.0",
     "webpack": "4.23.1",
     "webpack-cli": "3.1.2",
