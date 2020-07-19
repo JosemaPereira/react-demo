@@ -159,6 +159,7 @@
   text-align: center;
   padding: 20px;
   margin: 10px;
+  height: 200px;
 }
 
 .aside {
@@ -168,6 +169,17 @@
   margin-left: 10px;
   text-align: center;
   padding: 20px;
+}
+
+.pokeType {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.pokeTypeItem {
+  margin-left: 15px;
 }
 
 /*# sourceMappingURL=styles.css.map */

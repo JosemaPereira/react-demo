@@ -1,6 +1,7 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { getList, getInfoList } from '../../services';
-import { SetPokedexListReducer } from './actions';
+import { SetPokedexListReducer, setPokemonSelectedReducer } from './actions';
+import { setSelectedPokemonSaga } from './constants';
 
 function* getPokeList() {
   try {
@@ -12,6 +13,12 @@ function* getPokeList() {
   }
 }
 
+function* setSelectedPokemon({ payload }) {
+  yield put(setPokemonSelectedReducer(payload));
+}
+
 export function* pokedexSaga() {
   yield call(getPokeList);
+
+  yield takeLatest(setSelectedPokemonSaga, setSelectedPokemon);
 }

@@ -33,14 +33,12 @@ export const getInfoList = async idList => {
       pokemonList.push({
         id,
         name,
-        abilities,
+        abilities: abilities.sort((a, b) => a.slot - b.slot),
         front_default,
-        types: types.sort((a, b) => {
-          return a.slot - b.slot;
-        })
+        types: types.sort((a, b) => a.slot - b.slot)
       });
     })
   );
 
-  return pokemonList;
+  return pokemonList.sort((a, b) => a.id - b.id);
 };

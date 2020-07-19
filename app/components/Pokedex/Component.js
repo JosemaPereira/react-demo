@@ -1,31 +1,48 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 import { pokedexMessages } from './messages';
 import _ from 'lodash';
 
-const PokedexIntl = ({ intl, list }) => (
+const PokedexIntl = ({
+  intl,
+  list,
+  selected,
+  actions: { setPokemonSelectedSaga }
+}) => (
   <>
     <div className="list">
       {_.map(list, item => (
-        <div className="item" key={_.uniqueId()}>
-          <img src={item.front_default} alt="pokemon" />
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+        <div
+          className="item"
+          key={_.uniqueId()}
+          onClick={() => setPokemonSelectedSaga(item)}
+        >
+          <img src={item.front_default} alt={item.name} />
           <h3>{`#${item.id} ${item.name}`}</h3>
-          {_.map(item.types, type => (
-            <h4 key={_.uniqueId()}>{type.type.name}</h4>
-          ))}
         </div>
       ))}
     </div>
-    <div className="aside">
-      <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-        alt="pokemon"
-      />
-      <h3>Nombre</h3>
-      <h4>Tipo 1</h4>
-      <h4>Tipo 2</h4>
-      <h5>Caracteristicas</h5>
-    </div>
+    {Object.keys(selected).length > 0 && (
+      <div className="aside">
+        <img src={selected.front_default} alt={selected.name} />
+        <h3>{`#${selected.id} ${selected.name}`}</h3>
+        <div className="pokeType">
+          <h4>Type:</h4>
+          {_.map(selected.types, type => (
+            <p className="pokeTypeItem" key={_.uniqueId()}>{type.type.name}</p>
+          ))}
+        </div>
+
+        {_.map(selected.abilities, ab => (
+          <h5 key={_.uniqueId()}>
+            <b>{ab.is_hidden ? 'Hidden Ability' : 'Ability'}</b>:{' '}
+            {ab.ability.name}
+          </h5>
+        ))}
+      </div>
+    )}
   </>
 );
 
