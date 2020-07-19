@@ -9,14 +9,17 @@ import { usersSaga } from './saga';
 import * as usersSelectors from './selectors';
 
 const mapStateToProps = state => ({
-  users: usersSelectors.usersSelector(state)
+  list: usersSelectors.userListSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(usersBindActions, dispatch)
 });
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 
 const withReducer = injectReducer({ key: 'users', reducer: usersReducer });
 

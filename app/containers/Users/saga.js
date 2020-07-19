@@ -1,23 +1,23 @@
-import { put, takeLatest } from 'redux-saga/effects';
-import {
-  handleDefaultActionError,
-  handleDefaultActionFinished,
-  handleDefaultActionStarted
-} from './actions';
-import * as usersConstants from './constants';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
+import { getUsersPage } from '../../services';
+import { setCurrentPageReducer, setUserListContentReducer } from './actions';
+import { currentPageSelector } from './selectors';
 
-function* defaultActionHandler(action) {
-  yield put(handleDefaultActionStarted());
-
+function* setInitialConfig() {
   try {
-    // TODO: yield some workflow logic
-  } catch (err) {
-    yield put(handleDefaultActionError(err));
+    yield put(setCurrentPageReducer(1));
+  } catch (e) {
+    console.log(e);
   }
+}
 
-  yield put(handleDefaultActionFinished());
+function* getUserList() {
+  const page = yield select(currentPageSelector);
+  const list = yield call(getUsersPage, page);
+  yield put(setUserListContentReducer(list));
 }
 
 export function* usersSaga() {
-  yield takeLatest(usersConstants.DEFAULT_SAGA, defaultActionHandler);
+  yield call(setInitialConfig);
+  yield call(getUserList);
 }
