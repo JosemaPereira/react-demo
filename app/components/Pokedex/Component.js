@@ -1,14 +1,15 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
-import { pokedexMessages } from './messages';
 import _ from 'lodash';
 
 const PokedexIntl = ({
-  intl,
   list,
   selected,
-  actions: { setPokemonSelectedSaga }
+  paginator,
+  currentPage,
+  actions: { setPokemonSelectedSaga, setNewCurrentPageSaga }
 }) => (
   <>
     <div className="list">
@@ -31,7 +32,9 @@ const PokedexIntl = ({
         <div className="pokeType">
           <h4>Type:</h4>
           {_.map(selected.types, type => (
-            <p className="pokeTypeItem" key={_.uniqueId()}>{type.type.name}</p>
+            <p className="pokeTypeItem" key={_.uniqueId()}>
+              {type.type.name}
+            </p>
           ))}
         </div>
 
@@ -43,6 +46,38 @@ const PokedexIntl = ({
         ))}
       </div>
     )}
+    <div className="clearFix" />
+    <div className="paginator">
+      {paginator.showPrev && (
+        <p
+          className="page short"
+          onClick={() => {
+            setNewCurrentPageSaga(currentPage - 1);
+          }}
+        >{`<< Anterior`}</p>
+      )}
+      {_.map(paginator.array, item => (
+        <p
+          className={currentPage === item ? 'page active' : 'page'}
+          key={_.uniqueId()}
+          onClick={() => {
+            if (item !== '...' && item !== currentPage) {
+              setNewCurrentPageSaga(item);
+            }
+          }}
+        >
+          {item}
+        </p>
+      ))}
+      {paginator.showNext && (
+        <p
+          className="page short"
+          onClick={() => {
+            setNewCurrentPageSaga(currentPage + 1);
+          }}
+        >{`Siguiente >>`}</p>
+      )}
+    </div>
   </>
 );
 

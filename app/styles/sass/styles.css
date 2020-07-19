@@ -32,6 +32,11 @@
   margin: 0px auto;
 }
 
+.clearFix {
+  float: none;
+  clear: both;
+}
+
 #header {
   width: 100%;
   height: 70px;
@@ -180,6 +185,27 @@
 
 .pokeTypeItem {
   margin-left: 15px;
+}
+
+.paginator {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  margin: 30px;
+}
+.paginator .page {
+  padding: 10px;
+  background-color: black;
+  margin-left: 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.paginator .page:hover {
+  color: #37bcf9;
+}
+.paginator .page.active {
+  color: yellow !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

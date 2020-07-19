@@ -11,10 +11,27 @@ export const setPokemonSelectedReducer = payload => ({
   payload
 });
 
+export const setCurrentPageReducer = payload => ({
+  type: pokedexConstants.setCurrentPageReducer,
+  payload
+});
+
+export const setPaginatorReducer = payload => ({
+  type: pokedexConstants.setPaginatorReducer,
+  payload
+});
 // Sagas
 const setPokemonSelectedSaga = payload => ({
   type: pokedexConstants.setSelectedPokemonSaga,
   payload
 });
 
-export const pokedexBindActions = { setPokemonSelectedSaga };
+const setNewCurrentPageSaga = payload => ({
+  type: pokedexConstants.setNewCurrentPage,
+  payload
+});
+
+export const pokedexBindActions = {
+  setPokemonSelectedSaga,
+  setNewCurrentPageSaga
+};

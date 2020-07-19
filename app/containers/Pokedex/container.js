@@ -10,14 +10,19 @@ import * as pokedexSelectors from './selectors';
 
 const mapStateToProps = state => ({
   list: pokedexSelectors.listSelector(state),
-  selected: pokedexSelectors.pokemonSelectedSelector(state)
+  selected: pokedexSelectors.pokemonSelectedSelector(state),
+  paginator: pokedexSelectors.paginatorSelector(state),
+  currentPage: pokedexSelectors.currentPageSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(pokedexBindActions, dispatch)
 });
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 
 const withReducer = injectReducer({ key: 'pokedex', reducer: pokedexReducer });
 
