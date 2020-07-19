@@ -1,34 +1,37 @@
 import * as pokedexConstants from './constants';
 
 // Reducer
-export const defaultReducer = payload => ({
-  type: pokedexConstants.DEFAULT_REDUCER,
+export const SetPokedexListReducer = payload => ({
+  type: pokedexConstants.setPokedexListReducer,
   payload
 });
 
-export const pokedexReducerActions = {
-  defaultReducer
-};
-// Saga
-export const handleDefaultAction = payload => ({
-  type: pokedexConstants.DEFAULT_SAGA,
+export const setPokemonSelectedReducer = payload => ({
+  type: pokedexConstants.setSelectedPokemonReducer,
   payload
 });
 
-export const handleDefaultActionStarted = () => ({
-  type: pokedexConstants.DEFAULT_SAGA_STARTED
-});
-
-export const handleDefaultActionError = payload => ({
-  type: pokedexConstants.DEFAULT_SAGA_ERROR,
+export const setCurrentPageReducer = payload => ({
+  type: pokedexConstants.setCurrentPageReducer,
   payload
 });
 
-export const handleDefaultActionFinished = () => ({
-  type: pokedexConstants.DEFAULT_SAGA_FINISHED
+export const setPaginatorReducer = payload => ({
+  type: pokedexConstants.setPaginatorReducer,
+  payload
+});
+// Sagas
+const setPokemonSelectedSaga = payload => ({
+  type: pokedexConstants.setSelectedPokemonSaga,
+  payload
+});
+
+const setNewCurrentPageSaga = payload => ({
+  type: pokedexConstants.setNewCurrentPage,
+  payload
 });
 
 export const pokedexBindActions = {
-  handleDefaultAction
+  setPokemonSelectedSaga,
+  setNewCurrentPageSaga
 };
-

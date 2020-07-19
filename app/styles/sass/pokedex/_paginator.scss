@@ -1,0 +1,22 @@
+@use '../variables';
+
+.paginator {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  margin: 30px;
+  .page {
+    padding: 10px;
+    background-color: black;
+    margin-left: 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+      color: variables.$color_blue;
+    }
+    &.active {
+      color: yellow !important;
+    }
+  }
+}

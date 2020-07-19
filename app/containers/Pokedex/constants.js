@@ -1,12 +1,8 @@
-// TODO: Refactor DEFAULT for your actual workflow name, for example:
-// "default" -> "handleAddTodo"
-// "DEFAULT" -> "HANDLE_ADD_TODO"
-export const DEFAULT_REDUCER = 'pokedex/default';
-export const DEFAULT_SAGA = 'pokedex/defaultWorkflow';
-
-export const DEFAULT_SAGA_STARTED = 'pokedex/defaultWorkflowStarted';
-
-export const DEFAULT_SAGA_ERROR = 'pokedex/defaultWorkflowError';
-
-export const DEFAULT_SAGA_FINISHED = 'pokedex/defaultWorkflowFinished';
-
+// Reducer
+export const setCurrentPageReducer = 'pokedex/setCurrentPageReducer';
+export const setPokedexListReducer = 'pokedex/setPokedexListReducer';
+export const setSelectedPokemonReducer = 'pokedex/setSelectedPokemonReducer';
+export const setPaginatorReducer = 'pokedex/setPaginationReducer';
+// Sagas
+export const setSelectedPokemonSaga = 'pokedex/setSelectedPokemonSaga';
+export const setNewCurrentPage = 'pokedex/setNewCurrentPage';
