@@ -12,6 +12,7 @@ import { setNewCurrentPageSaga } from './constants';
 function* setInitialConfig() {
   try {
     yield put(setCurrentPageReducer(1));
+    yield call(getUserList);
   } catch (e) {
     console.log(e);
   }
@@ -45,6 +46,5 @@ function* newPage({ payload }) {
 
 export function* usersSaga() {
   yield call(setInitialConfig);
-  yield call(getUserList);
   yield takeLatest(setNewCurrentPageSaga, newPage);
 }

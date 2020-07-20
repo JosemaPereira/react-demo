@@ -10,3 +10,14 @@ export const getUsersPage = async page => {
 
   return data;
 };
+
+export const getUsersProfile = async id => {
+  const {
+    api: { source, resource }
+  } = DefaultUsersConfig;
+
+  const request = `${source}${resource}/${id}`;
+  const { data } = await HttpClient.get(request);
+
+  return data;
+};

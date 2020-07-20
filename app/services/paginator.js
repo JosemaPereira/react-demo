@@ -1,4 +1,3 @@
-import { currentPageSelector } from '../containers/Users/selectors';
 
 export const paginator = (
   currentPage,
