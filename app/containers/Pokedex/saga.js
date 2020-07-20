@@ -8,6 +8,7 @@ import {
 } from './actions';
 import { setSelectedPokemonSaga, setNewCurrentPage } from './constants';
 import { currentPageSelector } from './selectors';
+import { DefaultPokedexConfig } from '../../providers';
 
 function* setInitialConfig() {
   try {
@@ -34,8 +35,12 @@ function* setSelectedPokemon({ payload }) {
 }
 
 function* getPagination() {
+  const {
+    paginator: { itemByPage, maxShow }
+  } = DefaultPokedexConfig;
+
   const page = yield select(currentPageSelector);
-  const opt = yield call(paginator, page);
+  const opt = yield call(paginator, page, itemByPage, maxShow);
   yield put(setPaginatorReducer(opt));
 }
 

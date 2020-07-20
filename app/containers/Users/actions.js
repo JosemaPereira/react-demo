@@ -1,34 +1,25 @@
 import * as usersConstants from './constants';
 
 // Reducer
-export const defaultReducer = payload => ({
-  type: usersConstants.DEFAULT_REDUCER,
+export const setCurrentPageReducer = payload => ({
+  type: usersConstants.setCurrentPageReducer,
   payload
 });
 
-export const usersReducerActions = {
-  defaultReducer
-};
+export const setUserListContentReducer = payload => ({
+  type: usersConstants.setUserListContentReducer,
+  payload
+});
+
+export const setPaginatorReducer = payload => ({
+  type: usersConstants.setPaginatorReducer,
+  payload
+});
+
 // Saga
-export const handleDefaultAction = payload => ({
-  type: usersConstants.DEFAULT_SAGA,
+const setNewCurrentPageSaga = payload => ({
+  type: usersConstants.setNewCurrentPageSaga,
   payload
 });
 
-export const handleDefaultActionStarted = () => ({
-  type: usersConstants.DEFAULT_SAGA_STARTED
-});
-
-export const handleDefaultActionError = payload => ({
-  type: usersConstants.DEFAULT_SAGA_ERROR,
-  payload
-});
-
-export const handleDefaultActionFinished = () => ({
-  type: usersConstants.DEFAULT_SAGA_FINISHED
-});
-
-export const usersBindActions = {
-  handleDefaultAction
-};
-
+export const usersBindActions = { setNewCurrentPageSaga };

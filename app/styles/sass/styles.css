@@ -208,4 +208,18 @@
   color: yellow !important;
 }
 
+.users {
+  width: 70%;
+}
+.users .item {
+  width: 200px;
+}
+.users .item img {
+  border-radius: 100%;
+}
+
+.profile {
+  width: 300px;
+}
+
 /*# sourceMappingURL=styles.css.map */
