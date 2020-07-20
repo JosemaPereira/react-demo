@@ -1,5 +1,7 @@
 import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
+import { Router, Link } from 'react-router-dom';
+import { history } from '../../utils/history';
 
 const HeaderIntl = ({ intl }) => (
   <header id="header">
@@ -8,16 +10,18 @@ const HeaderIntl = ({ intl }) => (
         <span className="gear icon">S</span>
         <h3>Josema Pereira</h3>
       </div>
-      <nav id="menu">
-        <ul>
-          <li>
-            <a href="/user">Aplicacion usuarios</a>
-          </li>
-          <li>
-            <a href="/pokedex">Aplicacion Pokedex</a>
-          </li>
-        </ul>
-      </nav>
+      <Router history={history}>
+        <nav id="menu">
+          <ul>
+            <li>
+              <Link to="/user">Aplicacion usuarios</Link>
+            </li>
+            <li>
+              <Link to="/pokedex">Aplicacion Pokedex</Link>
+            </li>
+          </ul>
+        </nav>
+      </Router>
     </div>
   </header>
 );

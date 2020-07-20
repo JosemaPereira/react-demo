@@ -6,7 +6,6 @@ import { LanguageProvider } from './containers/LanguageProvider';
 import { history } from './utils/history';
 import { configureStore } from './configureStore';
 import { translationMessages } from './i18n';
-import { Header } from './components/Header';
 import { AppContainer } from './containers/App';
 
 const initialState = {};
