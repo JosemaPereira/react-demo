@@ -1,23 +1,50 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
+import { getUsersPage, paginator } from '../../services';
 import {
-  handleDefaultActionError,
-  handleDefaultActionFinished,
-  handleDefaultActionStarted
+  setCurrentPageReducer,
+  setUserListContentReducer,
+  setPaginatorReducer
 } from './actions';
-import * as usersConstants from './constants';
+import { currentPageSelector } from './selectors';
+import { DefaultUsersConfig } from '../../providers';
+import { setNewCurrentPageSaga } from './constants';
 
-function* defaultActionHandler(action) {
-  yield put(handleDefaultActionStarted());
-
+function* setInitialConfig() {
   try {
-    // TODO: yield some workflow logic
-  } catch (err) {
-    yield put(handleDefaultActionError(err));
+    yield put(setCurrentPageReducer(1));
+    yield call(getUserList);
+  } catch (e) {
+    console.log(e);
   }
+}
 
-  yield put(handleDefaultActionFinished());
+function* getUserList() {
+  const page = yield select(currentPageSelector);
+  const list = yield call(getUsersPage, page);
+  yield put(setUserListContentReducer(list));
+  yield call(getPagination);
+}
+
+function* getPagination() {
+  const {
+    paginator: { itemByPage, maxShow }
+  } = DefaultUsersConfig;
+
+  const page = yield select(currentPageSelector);
+  const opt = yield call(paginator, page, itemByPage, maxShow, 1);
+  yield put(setPaginatorReducer(opt));
+}
+
+function* newPage({ payload }) {
+  try {
+    yield put(setCurrentPageReducer(payload));
+    yield call(getUserList);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export function* usersSaga() {
-  yield takeLatest(usersConstants.DEFAULT_SAGA, defaultActionHandler);
+  yield call(setInitialConfig);
+  yield takeLatest(setNewCurrentPageSaga, newPage);
 }
