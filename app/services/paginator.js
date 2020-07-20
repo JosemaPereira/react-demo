@@ -1,8 +1,25 @@
-export const paginator = (currentPage, itemByPage, maxShow) => {
-  const maxPagination = 3;
+import { currentPageSelector } from '../containers/Users/selectors';
+
+export const paginator = (
+  currentPage,
+  itemByPage,
+  maxShow,
+  maxPagination = 3
+) => {
   let paginationArray = [];
   const finalPage = Math.ceil(maxShow / itemByPage);
   let pagResutl = { array: [], showNext: false, showPrev: false };
+
+  if (finalPage < 5) {
+    for (let i = 1; i < finalPage + 1; i += 1) {
+      paginationArray.push(i);
+    }
+    return {
+      array: paginationArray,
+      showNext: false,
+      showPrev: false
+    };
+  }
 
   if (currentPage < maxPagination) {
     for (let i = 1; i <= maxPagination + 1; i += 1) {

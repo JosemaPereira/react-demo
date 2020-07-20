@@ -9,7 +9,9 @@ import { usersSaga } from './saga';
 import * as usersSelectors from './selectors';
 
 const mapStateToProps = state => ({
-  list: usersSelectors.userListSelector(state)
+  list: usersSelectors.userListSelector(state),
+  paginator: usersSelectors.paginatorSelector(state),
+  currentPage: usersSelectors.currentPageSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({

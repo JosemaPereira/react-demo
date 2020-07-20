@@ -7,8 +7,19 @@ export const setCurrentPageReducer = payload => ({
 });
 
 export const setUserListContentReducer = payload => ({
-  type: usersConstants.setUserListContent,
+  type: usersConstants.setUserListContentReducer,
   payload
 });
 
-export const usersBindActions = {};
+export const setPaginatorReducer = payload => ({
+  type: usersConstants.setPaginatorReducer,
+  payload
+});
+
+// Saga
+const setNewCurrentPageSaga = payload => ({
+  type: usersConstants.setNewCurrentPageSaga,
+  payload
+});
+
+export const usersBindActions = { setNewCurrentPageSaga };

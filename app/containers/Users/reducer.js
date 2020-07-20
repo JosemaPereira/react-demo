@@ -2,7 +2,7 @@ import produce from 'immer';
 import { handleActions } from 'redux-actions';
 import * as usersConstants from './constants';
 
-const initialState = { currentPage: 0, list: [] };
+const initialState = { currentPage: 0, list: [], paginator: [] };
 
 const setCurrentPage = (state, { payload }) =>
   produce(state, draft => {
@@ -14,11 +14,17 @@ const setUserListContent = (state, { payload }) =>
     draft.list = payload;
   });
 
+const setPaginator = (state, { payload }) =>
+  produce(state, draft => {
+    draft.paginator = payload;
+  });
+
 export const usersReducer = produce(
   handleActions(
     {
       [usersConstants.setCurrentPageReducer]: setCurrentPage,
-      [usersConstants.setUserListContent]: setUserListContent
+      [usersConstants.setUserListContentReducer]: setUserListContent,
+      [usersConstants.setPaginatorReducer]: setPaginator
     },
     initialState
   )
